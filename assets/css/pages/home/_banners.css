@@ -51,10 +51,16 @@
 }
 
 .banner-slide__title{
+    animation:  slideLeft 1s;
     left: 0;
     width: 100%;
     top: 0;
     position: absolute;
+    display: none;
+}
+
+.banner-slide__title.active{
+    display: block;
 }
 .banners .arrow-slider{
     margin-top: -3rem;
