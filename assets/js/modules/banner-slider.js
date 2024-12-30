@@ -144,13 +144,11 @@ function onResizeWindow() {
 function setListeners(){
     btnNext.addEventListener('click', forwardSlide);
     btnPrevious.addEventListener('click', backwardSlide);
-
     sliderItems.forEach(function(slide, index){
-        const link =  slide.querySelector('.banner-slide__link');
+        const link = slide.querySelector('.banner-slide__link');
         link.addEventListener('click', preventDefault);
         slide.addEventListener('dragstart', preventDefault);
         slide.addEventListener('mousedown', function(event){
-        
             onMouseDown(event, index);
         });
 
@@ -179,7 +177,7 @@ function setListeners(){
 
 function init(){
     setVisibleSlide(2)
-    setListeners();
+    setListeners()
 }
 export default{
     init
