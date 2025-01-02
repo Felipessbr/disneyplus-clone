@@ -14,9 +14,14 @@
 
 .banner-slide__item{
     flex-shrink: 0;
+    opacity: .5;
     padding: 0 1rem 3rem;
     position: relative;
     width: 91vw;
+}
+
+.banner-slide__item.active{
+    opacity: 1;
 }
 
 .banner-slide__link{
@@ -56,15 +61,26 @@
     display: block;
 }
 .banners .arrow-slider{
+    height: 100%;
     margin-top: -3rem;
+    opacity: 0;
     position: absolute;
+    transition: opacity .3s;
     z-index: 2;
 }
-.banners .arrow-slider--left {
-    left: 3.6rem;
+
+.banners .arrow-slider:hover{
+    opacity: 1;
 }
+
+.banners .arrow-slider--left {
+    padding: 0 3.6rem;
+    left: 0;
+}
+
 .banners .arrow-slider--right{
-    right: 3.6rem;
+    padding: 0 3.6rem;
+    right: 0;
 }
 
 .banners .controls-slider{
@@ -82,11 +98,13 @@
     }
 
     .banners .arrow-slider--left {
-        left: 1rem;
+        padding: 0 1rem;
+        left: 0;
     }
 
     .banners .arrow-slider--right{
-        right: 1rem;
+        padding: 0 1rem;
+        right: 0;
     }
 
     .banners .controls-slider{

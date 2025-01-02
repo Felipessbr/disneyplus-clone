@@ -26,24 +26,6 @@ function getCenterPosition(index){
     return centerPosition
 }
 
-function forwardSlide(){
-    if(state.currentSliderIndex < sliderItems.length - 1){
-        setVisibleSlide(state.currentSliderIndex + 1);
-    }else{
-        setVisibleSlide(state.currentSliderIndex);
-    }
-    
-}
-
-function backwardSlide(){
-    if(state.currentSliderIndex > 0){
-        setVisibleSlide(state.currentSliderIndex - 1);
-    }else{
-        setVisibleSlide(state.currentSliderIndex);
-    }
-    
-}
-
 function animateTransition(active) {
     if(active){
     slider.style.transition = 'transform .5s';
@@ -70,13 +52,47 @@ function activeImageTitle(index){
     imgTitle.classList.add('active');
 }
 
+const activeCurrentSlides = () =>{
+    sliderItems.forEach((slide, slideIndex) => {
+        slide.classList.remove('active');
+        if(slideIndex === state.currentSliderIndex){
+            slide.classList.add('active');
+        }
+    });
+}
+
+function setArrowButtonsDisplay() {
+    btnPrevious.style.display = state.currentSliderIndex === 0 ? 'none' : 'block';
+    btnNext.style.display = state.currentSliderIndex === (sliderItems.length - 1) ? 'none' : 'block';
+}
+
 function setVisibleSlide(index){
-    state.currentSliderIndex = index
+    state.currentSliderIndex = index;
     const position = getCenterPosition(index); 
+    activeCurrentSlides ()
+    setArrowButtonsDisplay();
     activeControlButton(index);
     activeImageTitle(index);
     animateTransition(true);
     translateSlide(position);
+}
+
+function forwardSlide(){
+    if(state.currentSliderIndex < sliderItems.length - 1){
+        setVisibleSlide(state.currentSliderIndex + 1);
+    }else{
+        setVisibleSlide(state.currentSliderIndex);
+    }
+    
+}
+
+function backwardSlide(){
+    if(state.currentSliderIndex > 0){
+        setVisibleSlide(state.currentSliderIndex - 1);
+    }else{
+        setVisibleSlide(state.currentSliderIndex);
+    }
+    
 }
 
 function preventDefault(event){
@@ -111,7 +127,7 @@ function onMouseUp(event){
     }else{
         setVisibleSlide(state.currentSliderIndex)
     }
-
+    state.movementPosition = 0
     slide.removeEventListener('mousemove', onMouseMove);
 }
 
